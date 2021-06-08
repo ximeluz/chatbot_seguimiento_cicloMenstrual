@@ -13,7 +13,7 @@ slots:
 
 strategies:
     tamp:
-        - say "recuerda cambiar tu tampon cada 4 horas"
+#       - say "recuerda cambiar tu tampon cada 4 horas"
         - solve tampon
     other:
         - input other

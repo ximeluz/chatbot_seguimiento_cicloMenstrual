@@ -9,6 +9,7 @@ conversations:
     - 'tEcolo.yaml'
     - 'toallaD.yaml'
     - 'tampon.yaml'
+    - 'recomTampon.yaml'
     - 'ppast.yaml'
 slots:
     - name

@@ -7,17 +7,24 @@ slots:
     - perdidas
 strategies:
     toad:
-        - say "¿Cómo es tu flujo, abundante, moderado o con perdidas?"
-        - input status | asign abundante:abuD moderado:moD perdidas:perD
-        - if status == "abuD" then solve abundante
-        - if status == "moD" then solve moderado
-        - if status == "perD" then solve perdidas
-    abundante:
+        - say "¿Cómo es tu flujo?" 
+        - say "1.abundante."
+        - say "2.moderado."
+        - say "3.perdidas."
+        - say "Pon solo el número por favor."
+        - input status | asign 1:abuD 2:moD 3:perD
+        - if status == "abuD" then solve abuD
+        - if status == "moD" then solve moD
+        - if status == "perD" then solve perD
+    abuD:
         - say "si sales no olvides llevar toallas de repuesto"
-    moderado:
+        - say "Programaré una alarma. ¿Cuánto llevas usando tu toalla?"
+    moD:
         - say "recuerda cambiar tu toalla cada 4 horas"
-    perdidas:
+        - say "Programaré una alarma. ¿Cuánto llevas usando tu toalla?"
+    perD:
         - say "recuerda no traer la misma toalla por más de 4 horas"
+        - say "Programaré una alarma. ¿Cuánto llevas usando tu toalla?"
 script:
     - solve toad
     
