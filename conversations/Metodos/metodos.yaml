@@ -7,14 +7,9 @@ conversations:
     - 'tampon.yaml'
 
 slots:
-    - desechable
-    - tamp
     - other
 
 strategies:
-    tamp:
-#       - say "recuerda cambiar tu tampon cada 4 horas"
-        - solve tampon
     other:
         - input other
         - remember other
@@ -23,11 +18,11 @@ strategies:
 script:
     - say "¿Qué método usas?"
     - say "Escoge alguna opción"
-    - say "1. Copa ecologica."
-    - say "2. Toalla ecologica."
-    - say "3. Toalla desechable."
-    - say "4. Tampon."
-    - say "5. Otro, escribelo por favor."
+    - say "-Copa ecologica."
+    - say "-Toalla ecologica."
+    - say "-Toalla desechable."
+    - say "-Tampon."
+    - say "-Otro, escribelo por favor."
     - input status | asign copa:copa ecologica:tEcolo desechable:tDes tampon:tamp otro:other
     - if status == "copa" then solve copaM
     - if status == "tEcolo" then solve tEcolo

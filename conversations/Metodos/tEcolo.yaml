@@ -1,33 +1,28 @@
 # Conversación de Toalla ecologica.
 
-slots:
-    - abundante
-    - moderado
-    - perdidas
-
 strategies:
-    abundante:
+    abundantet:
         - say "Procura utilizar una toalla de 28 cm de largo aproximadamente."
         - say "Se debe cambiar cada 4 horas para evitar infecciones."
         - say "¿Cuantas horas llevas usandola?"
-        - input timea
-        #contador de horas y alarma.
-    moderado:
+        #input para el contador de horas y alarma.
+
+    mediot:
         - say "Procura utilizar una toalla de 23 cm de largo aproximadamente."
         - say "Se debe cambiar cada 4 horas para evitar infecciones."
         - say "¿Cuantas horas llevas usandola?"
-        - input timem
-        #contador de horas y alarma.
-    perdidas:
+        #input para el contador de horas y alarma.
+
+    perdidast:
         - say "Procura utilizar una toalla de 18 cm (o menos) de largo aproximadamente."
         - say "Se debe cambiar cada 4 horas para evitar infecciones."
         - say "¿Cuantas horas llevas usandola?"
-        - input timep
-        #contador de horas y alarma.
+        #input para el contador de horas y alarma.
 
 script:
     - say "¿Cómo es tu flujo el día de hoy?"
-    - input flujo | asign abundante:abu moderado:mod perdidas:perd
-    - if flujo == "abu" then solve abundante
-    - if flujo == "mod" then solve moderado
-    - if flujo == "perd" then solve perdidas
+    - input flujo | asign abundante:abu moderado:med perdidas:perd
+    - if flujo == "abu" then solve abundantet
+    - if flujo == "med" then solve mediot
+    - if flujo == "perd" then solve perdidast
+

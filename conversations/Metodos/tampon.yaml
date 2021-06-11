@@ -1,9 +1,11 @@
 #Metodo tampon.
 
 slots:
-    - abundante
-    - moderado
-    - perdidas
+    - abuTam
+    - modTam
+    - perdTam
+    - sst
+    - recomendations
 
 dbs:
     main: import_csv Dtampon.csv

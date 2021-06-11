@@ -2,9 +2,9 @@
 
 slots:
     - toad
-    - abundante
-    - moderado
-    - perdidas
+    - abuD
+    - moD
+    - perD
 strategies:
     toad:
         - say "¿Cómo es tu flujo?" 
@@ -25,6 +25,7 @@ strategies:
     perD:
         - say "recuerda no traer la misma toalla por más de 4 horas"
         - say "Programaré una alarma. ¿Cuánto llevas usando tu toalla?"
+
 script:
     - solve toad
     
