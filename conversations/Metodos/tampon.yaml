@@ -1,5 +1,8 @@
 #Metodo tampon.
 
+plugins:
+    - horas_tampon
+
 slots:
     - abuTam
     - modTam
@@ -12,15 +15,25 @@ dbs:
 
 strategies:
     abuTam:
-        - say "Programaré una alarma. ¿Cuánto tiempo llevas usando el tampon?"
+        - say "Para evitar derrames debes cambiar tu tampon máximo en 4 horas."
+        - say "Programaré una alarma para que cambies tu tampon."
+        - say "Mi alarma está programada en tiempo=horas"
+        - say "¿Cuántas horas llevas usando el tampon? Pon solo el número por favor."
         - input TabuTam
+        - horas_tampon.tam_Abundante(TabuTam)
     modTam:
-        - say "Programaré una alarma. ¿Cuánto tiempo llevas usando el tampon?"
+        - say "Programaré una alarma para que te cambies el tampon."
+        - say "Mi alarma está programada en tiempo=horas"
+        - say "¿Cuántas horas llevas usando el tampon? Pon solo el número por favor."
         - input TmodTam
+        - horas_tampon.tam_Moderado(TmodTam)
     perdTam:
         - say "Si tu flujo es muy leve te recomiendo mejor usar toallitas pequeñas."
-        - say "Programaré una alarma. ¿Cuánto tiempo llevas usando el tampon?"
+        - say "Programaré una alarma para avisarte de cambiar tu tampon."
+        - say "Mi alarma está programada en tiempo=horas"
+        - say "¿Cuántas horas llevas usando el tampon? Pon solo el número por favor."
         - input TperdTam
+        - horas_tampon.tam_Perdidas(TperdTam)
         #-ALARMA
     sst:
         - say "El {} {}".format(*db['main'][0])

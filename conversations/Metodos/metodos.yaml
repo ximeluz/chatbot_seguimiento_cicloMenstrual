@@ -10,6 +10,14 @@ slots:
     - other
 
 strategies:
+    copaMenst:
+        - solve copaM
+    ecologica:
+        - solve tEcolo
+    desechable:
+        - solve toallaD
+    tamp:
+        - solve tampon
     other:
         - input other
         - remember other
@@ -24,8 +32,8 @@ script:
     - say "-Tampon."
     - say "-Otro, escribelo por favor."
     - input status | asign copa:copa ecologica:tEcolo desechable:tDes tampon:tamp otro:other
-    - if status == "copa" then solve copaM
-    - if status == "tEcolo" then solve tEcolo
-    - if status == "tDes" then solve toallaD
+    - if status == "copa" then solve copaMenst
+    - if status == "tEcolo" then solve ecologica
+    - if status == "tDes" then solve desechable
     - if status == "tamp" then solve tamp
     - if status == "other" then solve other
