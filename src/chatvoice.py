@@ -158,8 +158,6 @@ if __name__ == '__main__':
         CONFIG['tts']=None
 
     # Main conversation
-    conversation = conversation.Conversation(
-    filename=kargs.CONV,
-    ** CONFIG)
+    conversation = conversation.Conversation(filename=kargs.CONV,** CONFIG)
 
     conversation.execute()
