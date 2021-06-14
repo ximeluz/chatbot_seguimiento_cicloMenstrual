@@ -2,12 +2,14 @@
 
 plugins:
     - horas_toaD
-     
+
 slots:
     - toad
     - abuD
     - moD
     - perD
+    - consejos
+
 strategies:
     toad:
         - say "¿Cómo es tu flujo?" 
@@ -41,9 +43,10 @@ strategies:
         - say "¿Cuántas horas llevas usando tu toalla? Pon solo el número por favor."
         - input TperD
         - horas_toaD.D_Perdidas(TperD)
-#    consejos:
+    consejos:
+        - solve consejoallaD
+        - say greeting
 
 script:
     - solve toad
-    - solve consejoallaD
-    - say greeting
+    - solve consejos
