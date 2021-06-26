@@ -1,4 +1,4 @@
-#Metodos.
+#Metodos
 
 conversations:
     - 'copaM.yaml'
@@ -6,10 +6,20 @@ conversations:
     - 'toallaD.yaml'
     - 'tampon.yaml'
 
-slots:
-    - other
-
 strategies:
+    met_habitual:
+        - say "¿es tu metodo habitual?"
+        - input status | asign si:sii no:noo
+        - if status == "sii" then say "lo anotaré. ¿Me puedes repetir tu método habitual?"
+        - input met_habitual
+        - remember met_habitual
+        - say "ya lo tengo, tu metodo habitual es {}".format(met_habitual)
+        - if status == "noo" then say "¿Cuál es tu método habitual?"
+        - input x
+        - say "lo anotaré. ¿Me puedes repetir tu método habitual?"
+        - input met_habitual
+        - remember met_habitual
+        - say "ya lo tengo, tu metodo habitual es {}".format(met_habitual)
     copaMenst:
         - solve copaM
     ecologica:
@@ -37,3 +47,4 @@ script:
     - if status == "tDes" then solve desechable
     - if status == "tamp" then solve tamp
     - if status == "other" then solve other
+    - loop_slots

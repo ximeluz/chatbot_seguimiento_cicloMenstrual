@@ -8,35 +8,35 @@ conversations:
     - 'copaM.yaml'
     - 'tEcolo.yaml'
     - 'toallaD.yaml'
-    - 'consejoallaD.yaml'
     - 'tampon.yaml'
-    - 'recomTampon.yaml'
+    - 'consejos.yaml'
     - 'ppast.yaml'
 slots:
     - name
-    - yperiodo
-    - nperiodo
+    - duraP
 strategies:
     name:
         - say "¿cúal es tu nombre?"
         - input name
         - remember name
         - say "mucho gusto en conocerte"
-    yperiodo:
+    duraP:
         - say "¿Cuántos días dura tu periodo?"
         - input duraP
         - remember duraP
+    yperiodo:
         - solve metodos
+        
 #       # -say "¿En qué día de tu periodo te encuentras?"
 #       # -input xday
     nperiodo:
         - say "¿Quieres registrar tus periodos pasados?"
         - input status | asign si:yess no:nott
         - if status == "yess" then solve ppast
-        - if status == "nott" then say "adios {}".format(name)
 script:
     - solve hello
     - say greeting
+    - loop_slots
     - say "¿Estas menstruando?"
     - input status | asign si:yes no:not
     - if status == "yes" then solve yperiodo

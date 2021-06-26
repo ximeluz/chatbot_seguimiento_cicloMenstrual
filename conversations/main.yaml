@@ -1,0 +1,41 @@
+settings:
+    name: Amalia
+
+slots:
+    - name
+
+conversations:
+    - 'Metodos/hello.yaml'
+    - 'Metodos/metodos.yaml'
+
+strategies:
+    name:
+        - say "¿cúal es tu nombre?"
+        - input name
+        - remember name
+        - say "mucho gusto en conocerte"
+    met_reg:
+        - solve metodos
+    información_recomendaciones:
+        - say "Adios {}".format(name)
+    malestar_general:
+        - say "Adios {}".format(name)
+    seguimiento_periodo:
+        - say "Adios {}".format(name)
+script:
+    - solve hello
+    - say greeting
+    - loop_slots
+    - say "Que te interesa ver hoy {}".format(name)
+    - say "¿Registrar el metodo que usas?"
+    - say "Información y recomendaciones sobre tu periodo."
+    - say "Malestar."
+    - say "Registrar tus periodos."
+    - input status | registrar:met informacion:in_re recomendaciones:in_re malestar:molestias periodos:seg_peri
+    - if status == "met" then solve met_reg 
+    - if status == "in_re" then solve información_recomendaciones
+    - if status == "molestias" then solve malestar_general 
+    - if status == "seg_peri" then solve seguimiento_periodo 
+    - say "Adios {}".format(name)
+
+

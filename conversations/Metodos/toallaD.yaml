@@ -3,24 +3,9 @@
 plugins:
     - horas_toaD
 
-slots:
-    - toad
-    - abuD
-    - moD
-    - perD
-    - consejos
+# slots:
 
 strategies:
-    toad:
-        - say "¿Cómo es tu flujo?" 
-        - say "1.abundante."
-        - say "2.moderado."
-        - say "3.perdidas."
-        - say "Pon solo el número por favor."
-        - input status | asign 1:abuD 2:moD 3:perD
-        - if status == "abuD" then solve abuD
-        - if status == "moD" then solve moD
-        - if status == "perD" then solve perD
     abuD:
         - say "si sales no olvides llevar toallas de repuesto" 
         - say "Programaré una alarma para que cambies tu toalla."
@@ -43,10 +28,21 @@ strategies:
         - say "¿Cuántas horas llevas usando tu toalla? Pon solo el número por favor."
         - input TperD
         - horas_toaD.D_Perdidas(TperD)
-    consejos:
-        - solve consejoallaD
+    consejo:
+        - solve consejos
         - say greeting
 
-script:
-    - solve toad
-    - solve consejos
+script: 
+    - say "¿Cómo es tu flujo?" 
+    - say "1.abundante."
+    - say "2.moderado."
+    - say "3.perdidas."
+    - say "Pon solo el número por favor."
+    - input status | asign 1:abuD 2:moD 3:perD
+    - if status == "abuD" then solve abuD
+    - if status == "moD" then solve moD 
+    - if status == "perD" then solve perD
+    - say "¿Quieres que te diga dos cosejos sobre el uso de toallas desechables?"
+    - input status | asign si:si_quiero no:no_quiero
+    - if status == "si_quiero" then solve consejo
+

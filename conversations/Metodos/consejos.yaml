@@ -1,0 +1,16 @@
+#Consejos de los cuatro metodos
+
+plugins:
+    - random_recomendation_tampon
+#    - random_consejos_toallaD
+
+script:
+    - set_slot options ["Como con cualquier producto que vaya dentro de la vagina recuerda darle un descanso a tu cuerpo.","Siempre lava tus manos antes de insertar un tampon"]
+    - random_recomendation_tampon.execute('greeting',options)
+#    - set_slot_option_two ["Cuidate mucho.", "Haz ejercicio."]
+#    - random_greeting.execute('greeting',options)
+
+#script:
+#    - set_slot options ["Cuidate mucho.", "Haz ejercicio."]
+#    - random_greeting.execute('greeting',options)
+
