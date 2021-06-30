@@ -2,30 +2,38 @@
 
 plugins:
     - horas_tampon
-
+    - Retardo
 #slots:
 
-dbs:
-    main: import_csv Dtampon.csv
+#dbs:
+#    main: import_csv Dtampon.csv
 
 strategies:
     abuTam:
         - say "Para evitar derrames debes cambiar tu tampon máximo en 4 horas."
+        - Retardo.retardob()
         - say "Programaré una alarma para que cambies tu tampon."
+        - Retardo.retardob()
         - say "Mi alarma está programada en tiempo=horas"
+        - Retardo.retardob()
         - say "¿Cuántas horas llevas usando el tampon? Pon solo el número por favor."
         - input TabuTam
         - horas_tampon.tam_Abundante(TabuTam)
     modTam:
         - say "Programaré una alarma para que te cambies el tampon."
+        - Retardo.retardob()
         - say "Mi alarma está programada en tiempo=horas"
+        - Retardo.retardob()
         - say "¿Cuántas horas llevas usando el tampon? Pon solo el número por favor."
         - input TmodTam
         - horas_tampon.tam_Moderado(TmodTam)
     perdTam:
         - say "Si tu flujo es muy leve te recomiendo mejor usar toallitas pequeñas."
+        - Retardo.retardob()
         - say "Programaré una alarma para avisarte de cambiar tu tampon."
+        - Retardo.retardob()
         - say "Mi alarma está programada en tiempo=horas"
+        - Retardo.retardob()
         - say "¿Cuántas horas llevas usando el tampon? Pon solo el número por favor."
         - input TperdTam
         - horas_tampon.tam_Perdidas(TperdTam)
@@ -41,14 +49,18 @@ strategies:
 script:
     - say "¿Cómo es tu flujo?"
     - say "abundante."
+    - Retardo.retardob()
     - say "moderado."
+    - Retardo.retardob()
     - say "perdidas." 
     - input status | asign abundante:abuTam moderado:modTam perdidas:perdTam
     - if status == "abuTam" then solve abuTam
     - if status == "modTam" then solve modTam
     - if status == "perdTam" then solve perdTam
     - say "Recuerda que los tampones NO deben ser utilizados más de 8 horas."
+    - Retardo.retardob()
     - say "Debido al riesgo de padecer 'sindrome de shock tóxico' (sst)."
+    - Retardo.retardob()
     - say "¿Sabes que es el 'sindrome de shock tóxico' (sst)."
     - input status | asign si:ysst no:nsst
     - if status == "ysst" then say "Yo también."
