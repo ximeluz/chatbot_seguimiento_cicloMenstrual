@@ -1,0 +1,24 @@
+#Registro de periodos pasados.
+
+slots:
+    - duraP
+strategies:
+    duraP:
+        - say "¿Cuántos días dura tu periodo?"
+        - input duraP
+        - remember duraP
+    ppast:
+
+script:
+    - loop_slots
+    - say "Dime la fecha de tu ultimo periodo de la siguiente manera"
+    - say "dia/mes/año"
+    - input fecha1
+#    - input ppast2
+#    - input ppast3
+#    - remember fecha1
+    - say "tu primer registro fue {}".format(fecha1)
+#    - remember ppast2
+#    - remember ppast3
+    # calendario dias anteriores
+

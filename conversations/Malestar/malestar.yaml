@@ -1,0 +1,9 @@
+# Conversacion para malestar
+
+strategies:
+    SPM:
+    colicos:
+
+script:
+#    - say "¿Cómo te sientes hoy?"
+    - say "No te preocupes pasará pronto."

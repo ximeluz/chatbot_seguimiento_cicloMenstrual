@@ -28,9 +28,9 @@ strategies:
         - say "¿Cuántas horas llevas usando tu toalla? Pon solo el número por favor."
         - input TperD
         - horas_toaD.D_Perdidas(TperD)
-    consejo:
-        - solve consejos
-        - say greeting
+#    consejo:
+#        - solve consejos
+#        - say greeting
 
 script: 
     - say "¿Cómo es tu flujo?" 
@@ -42,7 +42,8 @@ script:
     - if status == "abuD" then solve abuD
     - if status == "moD" then solve moD 
     - if status == "perD" then solve perD
-    - say "¿Quieres que te diga dos cosejos sobre el uso de toallas desechables?"
-    - input status | asign si:si_quiero no:no_quiero
-    - if status == "si_quiero" then solve consejo
+#    - say "¿Quieres que te diga dos cosejos sobre el uso de toallas desechables?"
+#    - input status | asign si:si_quiero no:no_quiero
+#    - if status == "si_quiero" then solve consejo
+#    - if status == "no_quiero" then say "ok, recuerda mantenerte hidratada"
 

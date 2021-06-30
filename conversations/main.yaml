@@ -1,12 +1,21 @@
+#MAIN GRANDOTE
+
 settings:
     name: Amalia
 
-slots:
-    - name
-
 conversations:
     - 'Metodos/hello.yaml'
+#    - 'Metodos/main.yaml'
     - 'Metodos/metodos.yaml'
+    - 'Metodos/copaM.yaml'
+    - 'Metodos/tEcolo.yaml'
+    - 'Metodos/toallaD.yaml'
+    - 'Metodos/tampon.yaml'
+    - 'Malestar/malestar.yaml'
+    - 'PPast/ppast.yaml'
+
+slots:
+    - name
 
 strategies:
     name:
@@ -14,28 +23,49 @@ strategies:
         - input name
         - remember name
         - say "mucho gusto en conocerte"
-    met_reg:
-        - solve metodos
-    información_recomendaciones:
-        - say "Adios {}".format(name)
-    malestar_general:
-        - say "Adios {}".format(name)
-    seguimiento_periodo:
-        - say "Adios {}".format(name)
+    metHab:
+#preguntar metodo habitual
+        - say "¿es tu metodo habitual?"
+        - input status | asign si:sii no:noo
+        - if status == "sii" then say "lo anotaré. ¿Me puedes repetir tu método habitual?"
+        - input met_habitual
+        - remember met_habitual
+        - say "ya lo tengo, tu metodo habitual es {}".format(met_habitual)
+        - if status == "noo" then say "¿Cuál es tu método habitual?"
+        - input x
+        - say "lo anotaré. ¿Me puedes repetir tu método habitual?"
+        - input met_habitual
+        - remember met_habitual
+        - say "ya lo tengo, tu metodo habitual es {}".format(met_habitual)
+    duraP:
+#Duracion del periodo
+        - say "¿Cuántos días dura tu periodo?"
+        - input duraP
+        - remember duraP
+    durac:
+#duracion del ciclo
+    seguimientoDePeriodo:
+#fecha del ultimo periodo
+    informacionYrecomendaciones:
+        - say "¡eeehhh! entraste a informacionYrecomendaciones."
+
 script:
     - solve hello
     - say greeting
     - loop_slots
-    - say "Que te interesa ver hoy {}".format(name)
-    - say "¿Registrar el metodo que usas?"
-    - say "Información y recomendaciones sobre tu periodo."
-    - say "Malestar."
-    - say "Registrar tus periodos."
-    - input status | registrar:met informacion:in_re recomendaciones:in_re malestar:molestias periodos:seg_peri
-    - if status == "met" then solve met_reg 
-    - if status == "in_re" then solve información_recomendaciones
-    - if status == "molestias" then solve malestar_general 
-    - if status == "seg_peri" then solve seguimiento_periodo 
-    - say "Adios {}".format(name)
-
-
+    - say "Quieres registrar una alarma para el metodo que usas {}".format(name)
+    - input ans1
+#    - say "status es {}".format(status)
+#    - say "el tipo de status es {}".format((type(status)))
+    - if ans1 in ("si", "Si", "sí", "Sí") then solve metodos
+    - if ans1 in ("no", "No") then say "Quieres que te diga la información y recomendaciones que se sobre tu periodo."
+    - input ans2
+    - if ans2 == "si" then solve informacionYrecomendaciones
+    - if ans2 == "no" then say "¿Te sientes malita?"
+    - input ans3
+    - if ans3 in ("si", "Si", "sí", "Sí") then solve malestar
+    - if ans3 in ("no", "No") then say "¿Quieres agendar tus periodos pasados?"
+    - input ans4
+    - if ans4 == "si" then solve ppast
+    - if ans4 == "no" then say "Me dio gusto saludarte, haz ejercicio. Adios {}".format(name)
+    - say "adios"

@@ -34,9 +34,9 @@ strategies:
         - say "El {} {}".format(*db['main'][0])
         - say "Los primeros casos estaban ligados al uso de tampones superabsorventes y su mal uso durante los periodos menstruales."
         - say "Actualmente tenemos mejores tampones y hábitos de uso."
-    recomendations:
-        - solve consejos
-        - say greeting
+#    recomendations:
+#        - solve consejos
+#        - say greeting
 
 script:
     - say "¿Cómo es tu flujo?"
@@ -53,5 +53,5 @@ script:
     - input status | asign si:ysst no:nsst
     - if status == "ysst" then say "Yo también."
     - if status == "nsst" then solve sst
-    - say "Te recomiendo que"
-    - solve recomendations
+#    - say "Te recomiendo que"
+#    - solve recomendations

@@ -1,4 +1,7 @@
-#Metodos
+#Conversacion de Metodos.
+
+settings:
+    name: Amalia
 
 conversations:
     - 'copaM.yaml'
@@ -7,44 +10,28 @@ conversations:
     - 'tampon.yaml'
 
 strategies:
-    met_habitual:
-        - say "¿es tu metodo habitual?"
-        - input status | asign si:sii no:noo
-        - if status == "sii" then say "lo anotaré. ¿Me puedes repetir tu método habitual?"
-        - input met_habitual
-        - remember met_habitual
-        - say "ya lo tengo, tu metodo habitual es {}".format(met_habitual)
-        - if status == "noo" then say "¿Cuál es tu método habitual?"
-        - input x
-        - say "lo anotaré. ¿Me puedes repetir tu método habitual?"
-        - input met_habitual
-        - remember met_habitual
-        - say "ya lo tengo, tu metodo habitual es {}".format(met_habitual)
-    copaMenst:
-        - solve copaM
-    ecologica:
-        - solve tEcolo
-    desechable:
-        - solve toallaD
-    tamp:
-        - solve tampon
-    other:
+    yperiodo:
+        - say "¿Qué método usas?"
+        - say "Escoge alguna opción"
+        - say "-Copa ecologica."
+        - say "-Toalla ecologica."
+        - say "-Toalla desechable."
+        - say "-Tampon."
+        - say "-Otro."
+        - input status | asign copa:copa ecologica:ecolo desechable:desech tampon:tamp otro:other
+        - if status == "copa" then solve copaM
+        - if status == "ecolo" then solve tEcolo
+        - if status == "desech" then solve toallaD
+        - if status == "tamp" then solve tampon
+        - if status == "other" then say "escribelo por favor"
         - input other
         - remember other
         - say "No tengo información sobre {}".format(other)
-
+    nperiodo:
+        - say "Entraste a nperiodo"
 script:
-    - say "¿Qué método usas?"
-    - say "Escoge alguna opción"
-    - say "-Copa ecologica."
-    - say "-Toalla ecologica."
-    - say "-Toalla desechable."
-    - say "-Tampon."
-    - say "-Otro, escribelo por favor."
-    - input status | asign copa:copa ecologica:tEcolo desechable:tDes tampon:tamp otro:other
-    - if status == "copa" then solve copaMenst
-    - if status == "tEcolo" then solve ecologica
-    - if status == "tDes" then solve desechable
-    - if status == "tamp" then solve tamp
-    - if status == "other" then solve other
-    - loop_slots
+    - say "¿Estas menstruando?"
+    - input status | asign si:yes no:not
+    - if status == "yes" then solve yperiodo
+    - if status == "not" then solve nperiodo
+    - say "aqui terminó metodos."
