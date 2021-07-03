@@ -2,39 +2,39 @@
 
 plugins:
     - horas_toaD
-    - Retardo
+#    - Retardo
 
 # slots:
 
 strategies:
     abuD:
         - say "si sales no olvides llevar toallas de repuesto" 
-        - Retardo.retardob()
+#        - Retardo.retardob()
         - say "Programaré una alarma para que cambies tu toalla."
-        - Retardo.retardob()
+#        - Retardo.retardob()
         - say "Mi alarma está programada en tiempo=horas"
-        - Retardo.retardob()
+#        - Retardo.retardob()
         - say "¿Cuántas horas llevas usando tu toalla? Pon solo el número por favor."
         - input TabuD
         - horas_toaD.D_Abundante(TabuD)
         - say "Recuerda checar tu toalla si te sientes muy humeda para evitar accidentes"
     moD:
         - say "recuerda cambiar tu toalla cada 4 horas"
-        - Retardo.retardob()
+#        - Retardo.retardob()
         - say "Programaré una alarma para que cambies tu toalla."
-        - Retardo.retardob()
+#        - Retardo.retardob()
         - say "Mi alarma está programada en tiempo=horas"
-        - Retardo.retardob()
+#        - Retardo.retardob()
         - say "¿Cuántas horas llevas usando tu toalla? Pon solo el número por favor."
         - input TmoD
         - horas_toaD.D_Moderado(TmoD)
     perD:
         - say "recuerda no traer la misma toalla por más de 4 horas"
-        - Retardo.retardob()
+#        - Retardo.retardob()
         - say "Programaré una alarma para que cambies tu toalla."
-        - Retardo.retardob()
+#        - Retardo.retardob()
         - say "Mi alarma está programada en tiempo=horas"
-        - Retardo.retardob()
+#        - Retardo.retardob()
         - say "¿Cuántas horas llevas usando tu toalla? Pon solo el número por favor."
         - input TperD
         - horas_toaD.D_Perdidas(TperD)
@@ -44,13 +44,13 @@ strategies:
 
 script: 
     - say "¿Cómo es tu flujo?" 
-    - Retardo.retardob()
+#    - Retardo.retardob()
     - say "1.abundante."
-    - Retardo.retardob()
+#    - Retardo.retardob()
     - say "2.moderado."
-    - Retardo.retardob()
+#    - Retardo.retardob()
     - say "3.perdidas."
-    - Retardo.retardob()
+#    - Retardo.retardob()
     - say "Pon solo el número por favor."
     - input status | asign 1:abuD 2:moD 3:perD
     - if status == "abuD" then solve abuD

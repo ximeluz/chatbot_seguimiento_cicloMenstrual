@@ -47,8 +47,8 @@ strategies:
 #        - say greeting
 
 script:
-    - say "¿Cómo es tu flujo?"
-    - say "abundante."
+    - say "¿Cómo es tu flujo? {}".retardob() #"abundante"
+#    - say "abundante."
     - Retardo.retardob()
     - say "moderado."
     - Retardo.retardob()

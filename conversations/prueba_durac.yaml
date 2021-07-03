@@ -1,0 +1,9 @@
+settings:
+    name:robotito
+
+script:
+    - say "¿cuántos días dura tu ciclo?"
+    - input durac
+    - if durac == int then say "anotaré que tu ciclo dura {}".format()durac
+    - if durac == str then say "no te preocupes lo calcularé."
+

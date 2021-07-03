@@ -1,24 +1,26 @@
 #Registro de periodos pasados.
 
-slots:
-    - duraP
+settings:
+    name: Amalia
+plugins:
+    - fechas
+#slots:
 strategies:
-    duraP:
-        - say "¿Cuántos días dura tu periodo?"
-        - input duraP
-        - remember duraP
     ppast:
 
 script:
-    - loop_slots
+#    - loop_slots
     - say "Dime la fecha de tu ultimo periodo de la siguiente manera"
-    - say "dia/mes/año"
+    - say "dia mes año"
+    - say "Ejemplo  01 05 2021" 
     - input fecha1
 #    - input ppast2
 #    - input ppast3
 #    - remember fecha1
     - say "tu primer registro fue {}".format(fecha1)
+    - say "el formato de fecha1 es {}".format(type(fecha1))
+    - fechas.cadena_a_fecha(fecha1)
+    - say "el formato de fecha1 es {}".format(type(fecha1))
+#    - say "la cadena es {}".
 #    - remember ppast2
 #    - remember ppast3
-    # calendario dias anteriores
-

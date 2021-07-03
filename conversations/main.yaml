@@ -5,7 +5,6 @@ settings:
 
 conversations:
     - 'Metodos/hello.yaml'
-#    - 'Metodos/main.yaml'
     - 'Metodos/metodos.yaml'
     - 'Metodos/copaM.yaml'
     - 'Metodos/tEcolo.yaml'
@@ -16,7 +15,9 @@ conversations:
 
 slots:
     - name
-
+    - metHab
+    - duraP
+#    - durac
 strategies:
     name:
         - say "¿cúal es tu nombre?"
@@ -25,18 +26,10 @@ strategies:
         - say "mucho gusto en conocerte"
     metHab:
 #preguntar metodo habitual
-        - say "¿es tu metodo habitual?"
-        - input status | asign si:sii no:noo
-        - if status == "sii" then say "lo anotaré. ¿Me puedes repetir tu método habitual?"
-        - input met_habitual
-        - remember met_habitual
-        - say "ya lo tengo, tu metodo habitual es {}".format(met_habitual)
-        - if status == "noo" then say "¿Cuál es tu método habitual?"
-        - input x
-        - say "lo anotaré. ¿Me puedes repetir tu método habitual?"
-        - input met_habitual
-        - remember met_habitual
-        - say "ya lo tengo, tu metodo habitual es {}".format(met_habitual)
+        - say "¿Cuál es tu metodo habitual?"
+        - input metHab
+        - remember metHab
+        - say "Lo anotaré, tu metodo habitual es {}".format(metHab)
     duraP:
 #Duracion del periodo
         - say "¿Cuántos días dura tu periodo?"
@@ -44,6 +37,12 @@ strategies:
         - remember duraP
     durac:
 #duracion del ciclo
+#        - say "¿Sabes cuántos días dura tu ciclo?"
+#        - input a
+#        - if a == "si" then say "¿Cúantos dias dura?"
+#        - input durac
+#        - remeber durac
+#        - if a == "no" then say "No te preocupes lo iré calculando."
     seguimientoDePeriodo:
 #fecha del ultimo periodo
     informacionYrecomendaciones:
@@ -53,19 +52,24 @@ script:
     - solve hello
     - say greeting
     - loop_slots
+    - say "Las opciones que tengo para el seguimiento de tu periodo son las siguientes, puedes contestarme si o no para acceder a ellas."
     - say "Quieres registrar una alarma para el metodo que usas {}".format(name)
-    - input ans1
+    - input ans1 | asign si:yes no:not
+    - if ans1 == "yes" then solve metodos
+    - if ans1 == "not" then say "ok, siguiente opción"
+    - say "¿Te sientes malita?"
+    - input ans2 | asign si:yes no:not
+    - if ans2 == "yes" then solve malestar
+    - if ans2 == "not" then say "Me alegra saber que no tienes malestar."
+    - say "¿Quieres agendar tus periodos pasados?"
+    - input ans3 | asign si:yes no:not
+    - if ans3 == "yes" then solve ppast
+    - if ans3 == "not" then say "va la ultima opción"
+    - say "Quieres que te diga la información y recomendaciones que se sobre el ciclo menstrual {}".format(name)
+    - input ans4 | asign si:yes no:not
+    - if ans4 == "yes" then solve informacionYrecomendaciones
+    - if ans4 == "not" then say "Se acabaron mis opciones, sin embargo, me dio gusto saludarte, recuerda hacer ejercicio."
+    - say "Adios {}".format(name)
 #    - say "status es {}".format(status)
 #    - say "el tipo de status es {}".format((type(status)))
-    - if ans1 in ("si", "Si", "sí", "Sí") then solve metodos
-    - if ans1 in ("no", "No") then say "Quieres que te diga la información y recomendaciones que se sobre tu periodo."
-    - input ans2
-    - if ans2 == "si" then solve informacionYrecomendaciones
-    - if ans2 == "no" then say "¿Te sientes malita?"
-    - input ans3
-    - if ans3 in ("si", "Si", "sí", "Sí") then solve malestar
-    - if ans3 in ("no", "No") then say "¿Quieres agendar tus periodos pasados?"
-    - input ans4
-    - if ans4 == "si" then solve ppast
-    - if ans4 == "no" then say "Me dio gusto saludarte, haz ejercicio. Adios {}".format(name)
-    - say "adios"
+

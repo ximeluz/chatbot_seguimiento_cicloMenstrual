@@ -9,7 +9,7 @@ import os.path
 re_number=re.compile(r'[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?')
 
 def yesno(self,msg,*args):
-    if msg in ['si','sí']:
+    if msg in ['si','sí','Si','Sí']:
         return True
     else:
         return False
